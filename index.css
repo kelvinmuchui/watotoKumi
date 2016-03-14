@@ -7,6 +7,7 @@ div {
 body {
     background-color: aqua;
 }
+
  
 .clearfix:after {
     display:block;
@@ -15,7 +16,14 @@ body {
 menu-wrap {
     width:100%;
     box-shadow:0px 1px 3px rgba(0,0,0,0.2);
-    background:#3e3436;
+    
+    height: auto;
+    border: 6px solid #949599;
+    margin: 20px;
+    padding: 50px;
+    width: 700px;
+    background-color: #FDD017;
+    font-family: sans-serif
 }
  
 .menu {
@@ -42,7 +50,6 @@ menu-wrap {
 
 .menu > ul > li {
     float:left;
-    display:inline-block;
     position:relative;
     font-size:19px;
 }
@@ -50,11 +57,18 @@ menu-wrap {
 .menu > ul > li > a {
     padding:10px 40px;
     display:inline-block;
-    text-shadow:0px 1px 0px rgba(0,0,0,0);
+    background-color: fuchsia;
+
 }
  
 .menu > ul > li:hover > a, .menu > ul > .current-item > a {
     background:#2e2728;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+    
 }
  
  
