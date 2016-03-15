@@ -1,11 +1,10 @@
 div {
     width: 100%;
 
-    background-color:goldenrod;
    
 }
 body {
-    background-color: aqua;
+    background-color:chocolate;
 }
 
  
@@ -15,13 +14,13 @@ body {
 }
 #content
 {
-    width: 40%;
-    height: auto;
-    background-color: aqua;
+    width: 50%;
+    height: 600px;
+    background-color:chocolate;
     float: right;
       position: absolute;
-    top: 50%;
-    left: 59.4%;
+    top: 10%
+    left: 49%;
 }
 menu-wrap {
     width:100%;
@@ -77,7 +76,7 @@ menu-wrap {
 #section {
     width:100%;
     float:left;
-    background-color: azure;
+    background-color:fuchsia;
 
 }
  
