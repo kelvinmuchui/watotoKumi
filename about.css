@@ -1,5 +1,10 @@
-div {
+#top{
     width: 100%;
+
+    background-color:chocolate;
+    padding: 20;
+    padding-left: 222;
+}
 
    
 }
@@ -7,11 +12,6 @@ body {
     background-color:chocolate;
 }
 
- 
-.clearfix:after {
-    display:block;
-    clear:both;
-}
 #content
 {
     width: 50%;
@@ -19,26 +19,24 @@ body {
     background-color:chocolate;
     float: right;
       position: absolute;
-    top: 10%
+    top: 30%;
     left: 49%;
 }
 menu-wrap {
     width:100%;
-    box-shadow:0px 1px 3px rgba(0,0,0,0.2);
-    
+    background-color: chocolate;
     height: auto;
     border: 6px solid #949599;
     margin: 20px;
     padding: 50px;
     width: 700px;
-    background-color: #FDD017;
     font-family: sans-serif
 }
  
 .menu {
     width:1000px;
     margin:0px auto;
-    background-color:blue
+    background-color:chocolate
 }
  
 .menu li {
@@ -66,7 +64,7 @@ menu-wrap {
 .menu > ul > li > a {
     padding:10px 40px;
     display:block;
-    background-color: fuchsia;
+    background-color:chocolate;
 
 }
  
@@ -76,7 +74,7 @@ menu-wrap {
 #section {
     width:100%;
     float:left;
-    background-color:fuchsia;
+    background-color:chocolate;
 
 }
  
