@@ -13,6 +13,16 @@ body {
     display:block;
     clear:both;
 }
+#content
+{
+    width: 40%;
+    height: 30%;
+    background-color: aqua;
+    float: right;
+      position: absolute;
+    top: 50%;
+    left: 50%;
+}
 menu-wrap {
     width:100%;
     box-shadow:0px 1px 3px rgba(0,0,0,0.2);
@@ -56,7 +66,7 @@ menu-wrap {
  
 .menu > ul > li > a {
     padding:10px 40px;
-    display:inline-block;
+    display:block;
     background-color: fuchsia;
 
 }
@@ -65,10 +75,10 @@ menu-wrap {
     background:#2e2728;
 }
 #section {
-    width:350px;
+    width:100%;
     float:left;
-    padding:10px;
-    
+    background-color: azure;
+
 }
  
  
