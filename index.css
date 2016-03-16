@@ -1,34 +1,14 @@
 #top{
-
-    background-color:aqua;
     padding: 20;
     padding-left: 222;
 }
-   
-}
-body {
-    background-color:chocolate;
+
 }
 
- 
-.clearfix:after {
-    display:block;
-    clear:both;
-}
-#content
-{
-    width: 40%;
-    height: auto;
-    background-color: aqua;
-    float: right;
-      position: absolute;
-    top: 50%;
-    left: 59.4%;
-}
 menu-wrap {
     width:100%;
     height: auto;
-    border: 6px solid #949599;
+    border: 6px;
     margin: 20px;
     padding: 50px;
     width: 700px;
@@ -66,7 +46,7 @@ menu-wrap {
 .menu > ul > li > a {
     padding:10px 40px;
     display:block;
-    background-color:aqua;
+
 
 }
  
@@ -76,7 +56,7 @@ menu-wrap {
 #section {
     width:100%;
     float:left;
-    background-color: azure;
+    
 
 }
  

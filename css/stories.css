@@ -1,0 +1,28 @@
+#top{
+
+    background-color:green;
+}
+#content
+{
+
+    background-color: green;
+}
+
+.menu > ul > li > a {
+    background-color:green;
+}
+#section {
+    background-color:green;
+}
+div{
+    background-color: green;
+}
+#content
+{
+    width: 40%;
+    height: auto;
+    float: right;
+      position: absolute;
+    top: 50%;
+    left: 59.4%;
+}
