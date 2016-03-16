@@ -1,0 +1,77 @@
+#top{
+    padding: 20;
+    padding-left: 222;
+}
+div{
+    background-color: purple
+}
+   
+}
+body {
+    background-color:purple;
+}
+
+#content
+{
+    width: 50%;
+    height: 600px;
+    float: right;
+      position: absolute;
+    top: 30%;
+    left: 49%;
+}
+menu-wrap {
+    width:100%;
+    height: auto;
+    border: 6px;
+    margin: 20px;
+    padding: 50px;
+    width: 700px;
+    font-family: sans-serif
+}
+ 
+.menu {
+    width:1000px;
+    margin:0px auto;
+}
+ 
+.menu li {
+    margin:0px;
+    list-style:none;
+    font-family:'Ek Mukta';
+}
+ 
+.menu a {
+    transition:all linear 0.15s;
+    color: red;
+}
+.menu li:hover > a, .menu .current-item > a {
+    text-decoration:none;
+    color: greenyellow;
+}
+ 
+
+.menu > ul > li {
+    float:left;
+    position:relative;
+    font-size:19px;
+}
+ 
+.menu > ul > li > a {
+    padding:10px 40px;
+    display:block;
+    background-color:chocolate;
+
+}
+ 
+.menu > ul > li:hover > a, .menu > ul > .current-item > a {
+    background:#2e2728;
+}
+#section {
+    width:100%;
+    float:left;
+    background-color:chocolate;
+
+}
+ 
+ 
