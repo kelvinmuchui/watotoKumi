@@ -1,6 +1,7 @@
 #content
 {
-  
+    width: 50%;
+    height: 0.1;
     background-color:chocolate;
     float: right;
       position: absolute;
