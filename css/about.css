@@ -1,0 +1,29 @@
+#content
+{
+    width: 50%;
+    height: 600px;
+    background-color:chocolate;
+    float: right;
+      position: absolute;
+    top: 30%;
+    left: 49%;
+}
+#top{
+
+    background-color:chocolate;
+}
+#content
+{
+
+    background-color: chocolate;
+}
+
+.menu > ul > li > a {
+    background-color:chocolate;
+}
+#section {
+    background-color:chocolate;
+}
+div{
+    background-color: chocolate;
+}

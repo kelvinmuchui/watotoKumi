@@ -1,0 +1,29 @@
+#content
+{
+    width: 40%;
+    height: auto;
+    float: right;
+      position: absolute;
+    top: 50%;
+    left: 59.4%;
+    background-color:purple;
+}
+#top{
+
+    background-color:purple;
+}
+#content
+{
+
+    background-color: purple;
+}
+
+.menu > ul > li > a {
+    background-color:purple;
+}
+#section {
+    background-color:purple;
+}
+div{
+    background-color: purple;
+}

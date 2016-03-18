@@ -1,21 +1,26 @@
-div {
-    width: 100%;
-    box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
-    background-color:goldenrod;
-   
+#top{
+    padding: 20;
+    padding-left: 222;
+     color: white;
+  text-shadow: 0    0   2px #fefcc9,
+               1px -1px 3px #feec85,
+              -2px -2px 4px #ffae34,
+               2px -4px 5px #ec760c,
+              -2px -6px 6px #cd4606,
+               0   -8px 7px #973716,
+               1px -9px 8px #451b0e;
 }
-body {
-    background-color: aqua;
+
 }
- 
-.clearfix:after {
-    display:block;
-    clear:both;
-}
+
 menu-wrap {
     width:100%;
-    box-shadow:0px 1px 3px rgba(0,0,0,0.2);
-    background:#3e3436;
+    height: auto;
+    border: 6px;
+    margin: 20px;
+    padding: 50px;
+    width: 700px;
+    font-family: sans-serif
 }
  
 .menu {
@@ -42,19 +47,25 @@ menu-wrap {
 
 .menu > ul > li {
     float:left;
-    display:inline-block;
     position:relative;
     font-size:19px;
 }
  
 .menu > ul > li > a {
     padding:10px 40px;
-    display:inline-block;
-    text-shadow:0px 1px 0px rgba(0,0,0,0);
+    display:block;
+
+
 }
  
 .menu > ul > li:hover > a, .menu > ul > .current-item > a {
     background:#2e2728;
+}
+#section {
+    width:100%;
+    float:left;
+    
+
 }
  
  
