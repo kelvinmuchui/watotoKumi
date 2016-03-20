@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="description" content="description">
+
  
-<title>Image Hovers</title>
+<title>Gallary</title>
  <link rel="stylesheet" href="index.css">
 <link rel="stylesheet" type="text/css" media="screen" href="css/g.css">
  
 </head>
  
 <body>
-      <div>
+      <div style="width:100%">
     <div id ="top"><h1>WATOTO KUMI CHILDREN'S HOME</h1> </div>
     <div class = "menu-wrap">
     <nav class ="menu">
@@ -20,49 +18,78 @@
             <li><a href="about.html">About us</a></li>
             <li><a>Gallery</a></li>
             <li><a href="program.html"> Programs</a></li>
-            <li><a>Stories</a></li>
+            <li><a href="stories.html">Stories</a></li>
         </ul>
+        
         </nav>
+        
     </div>
-  <div class="grow pic">
-    <img src="gallary/bahati.jpeg" alt="girl" style="width : 400; height 400">
-  </div>
 
-  <div class="shrink pic">
-    <img src="gallary/Children_s_Home.JPG" alt="city" style="width : 400; height 400">
+  <div class="responsive">
+  <div class="img">
+      <img src="pics/mkate.png" alt="Trolltunga Norway" width="300" height="200">
+    <div class="desc">Lorem ipsum dolor sit amet, in alia debet audiam mea, ancillae apeirian deserunt id nec. Nam at democritum adipiscing, sint nonumy tractatos te sea. Usu impetus dignissim comprehensam eu. Vix case aperiri te, efficiendi conclusionemque ea nec, esse tantas est an.</div>
   </div>
+</div>
 
-  <div class="sidepan pic">
-    <img src="Image%2520Hovers_files/Children_s_Home.JPG" alt="kick">
-  </div>
 
-  <div class="vertpan pic">
-    <img src="Image%20Hovers_files/5.jpeg" alt="climb">
-  </div>
 
-  <div class="tilt pic">
-    <img src="gallary/Children_s_Home.JPG" alt="">
-  </div>
 
-  <div class="morph pic">
-    <img src="gallary/slide.jpeg" alt="" style="width : 400; height:100%">
+<div class="responsive">
+  <div class="img">
+    <img src="pics/hunyo.jpeg" alt="Northern Lights" width="300" height="200">
+    <div class="desc">Lorem ipsum dolor sit amet, in alia debet audiam mea, ancillae apeirian deserunt id nec. Nam at democritum adipiscing, sint nonumy tractatos te sea. Usu impetus dignissim comprehensam eu. Vix case aperiri te, efficiendi conclusionemque ea nec, esse tantas est an.</div>
   </div>
+</div>
+    <div class="responsive">
+  <div class="img">
+    <img src="pics/fiwagoh-weekend.jpg" alt="Northern Lights" width="300" height="200">
+    <div class="desc">Lorem ipsum dolor sit amet, in alia debet audiam mea, ancillae apeirian deserunt id nec. Nam at democritum adipiscing, sint nonumy tractatos te sea. Usu impetus dignissim comprehensam eu. Vix case aperiri te, efficiendi conclusionemque ea nec, esse tantas est an.</div>
+  </div>
+</div>
 
-  <div class="focus pic">
-    <img src="gallary/index.jpeg" alt="">
+<div class="responsive">
+  <div class="img">
+    <img src="pics/dancing.jpeg" alt="Mountains" width="300" height="200">
+    <div class="desc">Lorem ipsum dolor sit amet, in alia debet audiam mea, ancillae apeirian deserunt id nec. Nam at democritum adipiscing, sint nonumy tractatos te sea. Usu impetus dignissim comprehensam eu. Vix case aperiri te, efficiendi conclusionemque ea nec, esse tantas est an.</div>
   </div>
+</div>
 
-  <div class="blur pic">
-    <img src="Image%20Hovers_files/2_003.jpeg" alt="plane">
-  </div>
+<div class="clearfix"></div>
 
-  <div class="bw pic">
-    <img src="Image%20Hovers_files/2.jpeg" alt="sea">
-  </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">X</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
 
-  <div class="brighten pic">
-    <img src="Image%20Hovers_files/2_002.jpeg" alt="sea">
-  </div>
- 
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+
+// Get all images and insert the clicked image inside the modal
+// Get the content of the image description and insert it inside the modal image caption
+var images = document.getElementsByTagName('img');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+var i;
+for (i = 0; i < images.length; i++) {
+   images[i].onclick = function(){
+       modal.style.display = "block";
+       modalImg.src = this.src;
+       modalImg.alt = this.alt;
+       captionText.innerHTML = this.nextElementSibling.innerHTML;
+   }
+}
+</script>
 
 </body></html>
