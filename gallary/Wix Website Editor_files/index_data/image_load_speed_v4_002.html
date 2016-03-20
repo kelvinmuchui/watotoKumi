@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<script type="text/javascript">
+// scripts/logger.js
+
+(function() {
+  var getLog, isDebugEnabled,
+    slice = [].slice;
+
+  isDebugEnabled = function() {
+    var error, ref, ref1;
+    try {
+      return window.DEBUG || ((ref = window.parent) != null ? ref.DEBUG : void 0) || ((ref1 = window.top) != null ? ref1.DEBUG : void 0);
+    } catch (_error) {
+      error = _error;
+      return window.DEBUG;
+    }
+  };
+
+  getLog = function() {
+    var error, ref, ref1;
+    try {
+      return ((ref = window.top) != null ? (ref1 = ref.Logger) != null ? ref1._log : void 0 : void 0) || Logger._log;
+    } catch (_error) {
+      error = _error;
+      return Logger._log;
+    }
+  };
+
+
+  /*
+   Log data if debugging is enabled
+   @constructor Logger
+   @param _serviceName {String}
+   */
+
+  this.Logger = (function() {
+    function Logger(_serviceName) {
+      this._serviceName = _serviceName;
+    }
+
+    Logger.prototype._serviceName = '';
+
+    Logger.prototype._pushLog = function(args, type) {
+      if (type == null) {
+        type = 'log';
+      }
+      return getLog().push({
+        type: type,
+        serviceName: this._serviceName,
+        args: args
+      });
+    };
+
+    Logger.prototype.log = function() {
+      var args;
+      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      this._pushLog(arguments, 'log');
+      if (isDebugEnabled()) {
+        return console.log.apply(console, [this._serviceName].concat(slice.call(args)));
+      }
+    };
+
+    Logger.prototype.warn = function() {
+      var args;
+      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      this._pushLog(arguments, 'warn');
+      if (isDebugEnabled()) {
+        return console.warn.apply(console, [this._serviceName].concat(slice.call(args)));
+      }
+    };
+
+    Logger.prototype.error = function() {
+      var args;
+      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      this._pushLog(arguments, 'error');
+      if (isDebugEnabled()) {
+        return console.error.apply(console, [this._serviceName].concat(slice.call(args)));
+      }
+    };
+
+    return Logger;
+
+  })();
+
+  this.Logger._log = [];
+
+
+  /*
+   Show log when CTRL+ALT+SHIFT+L was pressed
+   */
+
+  window.addEventListener('keydown', function(event) {
+    var keyCode;
+    if (isDebugEnabled()) {
+      return;
+    }
+    keyCode = event.keyCode || event.which;
+    if (keyCode === 76 && event.shiftKey && event.altKey && (event.metaKey || event.ctrlKey)) {
+      window.DEBUG = true;
+      return _.forEach(getLog(), function(data) {
+        var args;
+        args = Array.prototype.slice.apply(data.args || []);
+        args.unshift(data.serviceName);
+        return console[data.type].apply(console, args);
+      });
+    }
+  });
+
+}).call(this);
+
+
+
+// scripts/window-messenger.js
+
+(function() {
+  var logger,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  logger = new Logger('WindowMessenger');
+
+  this.WindowMessenger = (function() {
+    function WindowMessenger(targetWindow) {
+      this.targetWindow = targetWindow;
+      this._eventHandler = bind(this._eventHandler, this);
+      this.emit = bind(this.emit, this);
+      this.off = bind(this.off, this);
+      this.one = bind(this.one, this);
+      this.on = bind(this.on, this);
+      if (this.targetWindow === void 0) {
+        throw new Error('target window should be defined');
+      }
+      this.observers = [];
+      window.addEventListener('message', this._eventHandler, false);
+    }
+
+    WindowMessenger.prototype.on = function(event, fn) {
+      return this.observers.push({
+        event: event,
+        fn: fn
+      });
+    };
+
+    WindowMessenger.prototype.one = function(event, fn) {
+      return this.observers.push({
+        event: event,
+        fn: fn,
+        once: true
+      });
+    };
+
+    WindowMessenger.prototype.off = function(event, fn) {
+      var i, j, ref;
+      for (i = j = ref = this.observers.length - 1; j >= 0; i = j += -1) {
+        if (this.observers[i].event === event && (this.observers[i].fn === fn || typeof fn === 'undefined')) {
+          this.observers.splice(i, 1);
+        }
+      }
+    };
+
+    WindowMessenger.prototype.emit = function(event, data) {
+      logger.log('postMessage emitted', event, data);
+      return this.targetWindow.postMessage(JSON.stringify({
+        event: event,
+        data: data
+      }), '*');
+    };
+
+    WindowMessenger.prototype._eventHandler = function(event) {
+      var data;
+      if (event.source !== this.targetWindow) {
+        return;
+      }
+      data = JSON.parse(event.data);
+      logger.log('postMessage received', data);
+      return this.observers.filter(function(observer) {
+        return observer.event === data.event;
+      }).forEach((function(_this) {
+        return function(observer) {
+          observer.fn.call(event, data.data);
+          if (observer.once) {
+            return _this.off(observer.event, observer.fn);
+          }
+        };
+      })(this));
+    };
+
+    return WindowMessenger;
+
+  })();
+
+}).call(this);
+</script>
+</head>
+<body>
+
+<script type="text/javascript">
+var connection = new window.WindowMessenger(window.parent);
+
+function getPerformanceEntryByUrl(url) {
+  var es = window.performance.getEntries();
+  for(var i=0; i<es.length; i++ ) {
+    if (es[i].name.indexOf(url) !== -1) {
+      return es[i];
+    }
+  }
+}
+
+function emitResult (request, options, isSuccess) {
+
+  var perf = getPerformanceEntryByUrl(options.url);
+
+  if(!perf || !perf.duration) return;
+
+  var data = {
+    responseCode: request.status,
+    responseTimeMS: perf.duration,
+    responseHeaders: request.getAllResponseHeaders(),
+    options: options,
+    isSuccess: isSuccess
+  };
+
+  connection.emit('loadSpeed.result', data);
+}
+
+function getCurrentTime () {
+  return (new Date()).getTime();
+}
+
+function sendRequest (options) {
+  var request = new XMLHttpRequest();
+  request.open(options.method || "GET", options.url, true);
+
+  if (options.headers) {
+    for (var headerName in options.headers) {
+      request.setRequestHeader(headerName, options.headers[headerName]);
+    }
+  }
+  request.send(options.data || null);
+
+  return request;
+}
+
+
+connection.on('loadSpeed.measure', function (options) {
+  var request = sendRequest(options);
+  //var startTime = getCurrentTime();
+
+  function sendSuccess () {
+    emitResult(request, options, true);
+  }
+
+  function sendError () {
+    emitResult(request, options, false);
+  }
+
+  request.addEventListener('load', function () {
+    var isSuccess = request.status.toString().match(/^2\d+/i);
+    isSuccess ? sendSuccess() : sendError();
+  }, false);
+
+  request.addEventListener('error', sendError, false);
+  request.addEventListener('timeout', sendError, false);
+});
+
+if(window.performance) {
+  connection.emit('loadSpeed.readyForRequest', {});
+
+}
+
+</script>
+
+
+</body></html>

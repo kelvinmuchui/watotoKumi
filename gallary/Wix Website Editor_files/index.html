@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if IE]> <html class="ie"> <![endif]-->
+<!--[if !IE]> -->
+<html><!-- <![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+
+<script type="text/javascript">
+try { // try access parent domain
+  parent.document.domain;
+}
+catch(e) { // parent have changed domain, we have to do it too
+  document.domain = document.domain.split('.').slice(-2).join('.');
+}
+</script>
+<!--<script src="//static.parastorage.com/services/third-party/xdomain/0.7.3/xdomain.min.js"></script>
+<script type="text/javascript">
+  // CORS Fix throw iframe for IE
+  if ((/MSIE|Trident/i).test(window.navigator.userAgent || '')) {
+    var siteUrl = document.location.protocol + '//' + document.location.hostname;
+    xdomain.slaves({
+      'https://files.wix.com':'/assets/iframe_cors_proxy.html?site_url=' + siteUrl,// private media
+      'https://publicmedia.wix.com':'/assets/iframe_cors_proxy.html?site_url=' + siteUrl,// public media
+      'https://pix.wix.com':'/assets/iframe_cors_proxy.html?site_url=' + siteUrl,  // external services
+      'http://files.wix.com':'/assets/iframe_cors_proxy.html?site_url=' + siteUrl,// private media
+      'http://publicmedia.wix.com':'/assets/iframe_cors_proxy.html?site_url=' + siteUrl,// public media
+      'http://pix.wix.com':'/assets/iframe_cors_proxy.html?site_url=' + siteUrl  // external services
+    });
+  }
+</script>-->
+
+<script src="index_data/lodash.js"></script>
+
+<script src="index_data/app-load-notifiers.js"></script>
+
+<script type="text/javascript">
+appLoadNotifiers.jsLoadStarted();
+</script>
+
+
+<link href="index_data/fontFace.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="index_data/build.css">
+
+</head>
+<body class="ng-scope" ng-app="mediaGalleryApp">
+
+    <script src="index_data/feather.js"></script>
+    <script src="index_data/jquery.js"></script>
+    <script src="index_data/angular.js"></script>
+    <script src="index_data/angular-resource.js"></script>
+    <script src="index_data/angular-ui-router.js"></script>
+    <script src="index_data/restangular.js"></script>
+    <script src="index_data/jquery-ui.js"></script>
+    <script src="index_data/URI.js"></script>
+    <script src="index_data/ngDialog.js"></script>
+
+    <script src="index_data/scripts.js"></script>
+
+
+    <div id="mediaGallery">
+        <div id="tooltip-wrapper" style="position:absolute;"></div>
+        <!-- uiView:  --><div class="container ng-scope" ui-view=""><!-- ngIf: settings.cssUrl --><!-- uiView:  --><div ui-view="" class="window-wrapper fullscreen"><!-- ngInclude: 'scripts/pages/_partials/window-header.html' --><div ng-include="'scripts/pages/_partials/window-header.html'" class="header ng-scope"><h1 class="ng-binding ng-scope">Choose an Image for Your Background<button bi-click="{ eventName: 'closeButton.click', data: {} }" ng-click="closeWindow()" class="close">×</button><button bi-click="{ eventName: 'helpButton.click', data: {} }" ng-click="$help.showPopup()" class="help">| ?</button></h1><!-- ngInclude: 'scripts/pages/_partials/help-popup.html' --><div class="ng-scope" ng-include="'scripts/pages/_partials/help-popup.html'"><div ng-show="$help.popupIsVisible" class="inner-popup-underlay ng-scope ng-hide"></div><!-- ngIf: $help.popupIsVisible --></div></div><div class="content ng-scope"><div class="content-top"><!-- ngInclude: 'scripts/pages/_partials/tabs.html' --><div ng-include="'scripts/pages/_partials/tabs.html'" class="tabs ng-scope"><ul class="ng-scope" ng-show="settings.showTabs"><li><!-- ngRepeat: tabId in settings.tabsList --><button class="ng-binding ng-scope" bi-click="{eventName: 'tabSelect.click', data: {target: tabId}}" ng-class="{active: isActiveTab(tabs[tabId])}" ng-repeat="tabId in settings.tabsList" ng-show="tabs[tabId].canShow()" ui-sref="app.private">My Images</button><!-- end ngRepeat: tabId in settings.tabsList --><button class="ng-binding ng-scope" bi-click="{eventName: 'tabSelect.click', data: {target: tabId}}" ng-class="{active: isActiveTab(tabs[tabId])}" ng-repeat="tabId in settings.tabsList" ng-show="tabs[tabId].canShow()" ui-sref="app.external">Social Images</button><!-- end ngRepeat: tabId in settings.tabsList --><button class="ng-binding ng-scope" bi-click="{eventName: 'tabSelect.click', data: {target: tabId}}" ng-class="{active: isActiveTab(tabs[tabId])}" ng-repeat="tabId in settings.tabsList" ng-show="tabs[tabId].canShow()" ui-sref="app.public">Free from Wix</button><!-- end ngRepeat: tabId in settings.tabsList --><button class="ng-binding ng-scope" bi-click="{eventName: 'tabSelect.click', data: {target: tabId}}" ng-class="{active: isActiveTab(tabs[tabId])}" ng-repeat="tabId in settings.tabsList" ng-show="tabs[tabId].canShow()" ui-sref="app.photoStock">Bigstock Images</button><!-- end ngRepeat: tabId in settings.tabsList --></li></ul></div><upload-button class="ng-isolate-scope" upload-files="$upload.addFiles(files, getSelectedFolder())" can-upload="tabs.private.canShow()"><div file-select="uploadFiles({files: files})" ng-show="canUpload &amp;&amp; !canConnectExternal" class="upload-button"><input id="files-input" accept="*" bi-click="{eventName: 'uploadButton.click', data: {}}" multiple="true" name="file" title="" type="file"><button class="ng-binding">Upload Images</button></div><div ng-show="canUpload &amp;&amp; canConnectExternal" file-select="uploadFiles({files: files})" popup="{align: 'bottom left', offsetTop: 32, offsetLeft: '100%', event: 'mouseover', containerClass: 'popup-container upload-popup-container', fadeOut: 300}" class="upload-button with-popup ng-hide"><input id="files-input" accept="*" bi-click="{eventName: 'uploadButton.click', data: {}}" multiple="true" name="file" title="" type="file"><button class="ng-binding">Add Images</button><div class="upload-popup popup-content"><div file-select="uploadFiles({files: files})" deny-bubbling="click" class="button"><input id="files-input" accept="*" bi-click="{eventName: 'uploadButton.click', data: {}}" multiple="true" name="file" deny-bubbling="click" title="" type="file"><button class="ng-binding">Upload Images</button></div><div class="external-services ng-binding">Get Your Social Images<div class="list"><!-- ngRepeat: service in externalServices --><button ng-repeat="service in externalServices" ng-class="service.id" ng-click="connectExternal(service)" deny-bubbling="click" class="service ng-scope facebook"></button><!-- end ngRepeat: service in externalServices --><button ng-repeat="service in externalServices" ng-class="service.id" ng-click="connectExternal(service)" deny-bubbling="click" class="service ng-scope instagram"></button><!-- end ngRepeat: service in externalServices --><button ng-repeat="service in externalServices" ng-class="service.id" ng-click="connectExternal(service)" deny-bubbling="click" class="service ng-scope drive"></button><!-- end ngRepeat: service in externalServices --><button ng-repeat="service in externalServices" ng-class="service.id" ng-click="connectExternal(service)" deny-bubbling="click" class="service ng-scope flickr"></button><!-- end ngRepeat: service in externalServices --><button ng-repeat="service in externalServices" ng-class="service.id" ng-click="connectExternal(service)" deny-bubbling="click" class="service ng-scope picasa"></button><!-- end ngRepeat: service in externalServices --></div></div></div></div></upload-button></div></div><!-- ngInclude: 'scripts/pages/_partials/footer.html' --><div ng-include="'scripts/pages/_partials/footer.html'" class="footer ng-scope"><div class="submit ng-scope"><button class="ng-binding disabled" bi-click="{eventName: 'chooseButton.click', data: {}}" ng-class="{disabled: !canSubmitItems()}" ng-click="submitItems()" ng-show="settings.submitItems" title="Choose file">Change Background</button></div><!-- ngIf: $upload.getFilesQueue().length --><div ng-if="$upload.getFilesQueue().length" ng-class="{'has-failed': $upload.hasFailedFiles(), 'in-progress': $upload.hasInProgress(), maximize: $upload.popupIsVisible, minimize: !$upload.popupIsVisible}" ng-click="$upload.showPopup()" class="upload-status ng-scope minimize"><div class="title ng-binding">Uploaded&nbsp;<span class="numbers ng-binding">(1/1&nbsp;<span ng-switch="$upload.allFilesCount() &gt; 1"><!-- ngSwitchWhen: true --><!-- ngSwitchWhen: false --><span class="ng-binding ng-scope" ng-switch-when="false">File)</span></span></span></div><div ng-show="$upload.hasInProgress()" class="progress-bar ng-hide"><div style="width: 100%;" ng-style="{'width': $upload.totalProgressPercent + '%'}" class="progress"></div></div><div ng-show="$upload.failedFilesCount() &gt; 0" class="fails ng-hide"><!-- ngIf: $upload.failedFilesCount() - $upload.cancelledFilesCount() > 0 --></div><button ng-click="$upload.showPopup()" class="show-upload-popup ng-binding">Key without translation: "uploader.footer.view_details"</button></div><!-- end ngIf: $upload.getFilesQueue().length --><div ng-show="selectedEntitiesCount()" ng-switch="selectedEntitiesCount() &gt; 1" class="selected-items-size ng-scope ng-hide"><!-- ngSwitchWhen: true --><!-- ngSwitchWhen: false --><span class="ng-binding ng-scope" ng-switch-when="false">0 Item Selected</span></div></div></div></div>
+    </div>
+
+<script>
+appLoadNotifiers.domLoadFinished();
+
+document.getElementById('mediaGallery').addEventListener('mousewheel', function (e) {
+  e=e || window.event;
+  if(e.target==this) {
+    if(e.stopPropagation) e.stopPropagation();
+    if(e.preventDefault) return e.preventDefault();
+  }
+
+});
+
+</script>
+
+
+<iframe src="index_data/file_v4.html" style="display: none;"></iframe><iframe src="index_data/image_load_speed_v4.html" style="display: none;"></iframe><iframe src="index_data/image_load_speed_v4_002.html" style="display: none;"></iframe><iframe src="index_data/image_load_speed_v4_2.html" style="display: none;"></iframe></body></html>

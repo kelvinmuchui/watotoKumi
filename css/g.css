@@ -1,197 +1,126 @@
+div.img {
+    border: 1px solid #ccc;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+/* The Image */
+div.img img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Description of Image */
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-
-  margin: 0; padding: 0;
+    box-sizing: border-box;
 }
 
-body {
-  background: #333;
+/* Add Responsiveness */
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
 }
 
-.header {
-  height: 25px;
-  background: #111;
-  color: #fff;
-  text-align: center;
-  font: 11px/25px Helvetica, Arial, sans-serif;
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
-.header a {
-  color: #eee;
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
 }
 
-.header a:hover {
-  text-decoration: none;
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
 }
 
-
-/*PIC*/
-.pic {
-  height: 300px;
-  width: 300px;
-  overflow: hidden;
-  margin: 20px;
-  border: 10px solid white;
-
-  -webkit-box-shadow: 5px 5px 5px #111;
-  box-shadow: 5px 5px 5px #111;
-  float: left;
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
 }
 
-.pic:hover {
-  cursor: pointer;
+@-webkit-keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
 }
 
-/*GROW*/
-.grow img {
-  height: 300px;
-  width: 300px;
-
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  transition: all 1s ease;
+@keyframes zoom {
+    from {transform:scale(0.1)} 
+    to {transform:scale(1)}
 }
 
-.grow img:hover {
-  width: 400px;
-  height: 400px;
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-/*SHRINK*/
-.shrink img {
-  height: 400px;
-  width: 400px;
-
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  transition: all 1s ease;
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.shrink img:hover {
-  width: 300px;
-  height: 300px;
+/* Responsive Columns */
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+    .modal-content {
+        width: 100%;
+    }
 }
 
-/*BLUR*/
-.blur img {
-  -webkit-transition: all 1s ease;
-     -moz-transition: all 1s ease;
-       -o-transition: all 1s ease;
-      -ms-transition: all 1s ease;
-          transition: all 1s ease;
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
 }
 
-.blur img:hover {
-  -webkit-filter: blur(5px);
-}
-
-/*TILT*/
-.tilt {
-  -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
-      -ms-transition: all 0.5s ease;
-          transition: all 0.5s ease;
-}
-
-.tilt:hover {
-  -webkit-transform: rotate(-10deg);
-     -moz-transform: rotate(-10deg);
-       -o-transform: rotate(-10deg);
-      -ms-transform: rotate(-10deg);
-          transform: rotate(-10deg);
-}
-
-/*MORPH*/
-.morph {
-  -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
-      -ms-transition: all 0.5s ease;
-          transition: all 0.5s ease;
-}
-
-.morph:hover {
-  border-radius: 50%;
-  -webkit-transform: rotate(360deg);
-     -moz-transform: rotate(360deg);
-       -o-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-          transform: rotate(360deg);
-}
-
-/*SIDEPAN*/
-.sidepan img {
-  margin-left: 0px;
-  -webkit-transition: margin 1s ease;
-     -moz-transition: margin 1s ease;
-       -o-transition: margin 1s ease;
-      -ms-transition: margin 1s ease;
-          transition: margin 1s ease;
-}
-
-.sidepan img:hover {
-  margin-left: -200px;
-}
-
-/*VERTPAN*/
-.vertpan img {
-  margin-top: 0px;
-  -webkit-transition: margin 1s ease;
-     -moz-transition: margin 1s ease;
-       -o-transition: margin 1s ease;
-      -ms-transition: margin 1s ease;
-          transition: margin 1s ease;
-}
-
-.vertpan img:hover {
-  margin-top: -200px;
-}
-
-/*FOCUS*/
-.focus {
-  -webkit-transition: all 1s ease;
-     -moz-transition: all 1s ease;
-       -o-transition: all 1s ease;
-      -ms-transition: all 1s ease;
-          transition: all 1s ease;
-}
-
-.focus:hover {
-  border: 70px solid #000;
-  border-radius: 50%;
-}
-
-/*B&W*/
-.bw {
-  -webkit-transition: all 1s ease;
-     -moz-transition: all 1s ease;
-       -o-transition: all 1s ease;
-      -ms-transition: all 1s ease;
-          transition: all 1s ease;
-}
-
-.bw:hover {
-  -webkit-filter: grayscale(100%);
-}
-
-/*DARKEN*/
-.brighten img {
-  -webkit-filter: brightness(-65%);
-  -webkit-transition: all 1s ease;
-     -moz-transition: all 1s ease;
-       -o-transition: all 1s ease;
-      -ms-transition: all 1s ease;
-          transition: all 1s ease;
-}
-
-.brighten img:hover {
-  -webkit-filter: brightness(0%);
+/* Clear Floats */
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }
